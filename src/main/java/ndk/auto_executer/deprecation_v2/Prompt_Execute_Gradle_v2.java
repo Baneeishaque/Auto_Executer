@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ndk.auto_executer;
+package ndk.auto_executer.deprecation_v2;
 
 import java.util.Scanner;
 import org.apache.commons.lang3.SystemUtils;

@@ -9,25 +9,25 @@ package ndk.auto_executer;
  *
  * @author manec
  */
-public class Prompt_Execute_v2_Confirmation extends Prompt_Execute_v2 {
+public class Prompt_Execute_v3_Confirmation extends Prompt_Execute_v3 {
 
     @Override
-    boolean configure_auto_mode() {
+    public boolean configure_auto_mode() {
         return false;
     }
 
     @Override
-    boolean configure_confirmation_mode() {
+    public boolean configure_confirmation_mode() {
         return true;
     }
 
     @Override
-    boolean configure_continue_mode() {
+    public boolean configure_continue_mode() {
         return true;
     }
 
     public static void main(String[] args) {
-        Prompt_Execute_v2_Confirmation prompt_Execute_v2_Confirmation = new Prompt_Execute_v2_Confirmation();
+        Prompt_Execute_v3_Confirmation prompt_Execute_v2_Confirmation = new Prompt_Execute_v3_Confirmation();
         prompt_Execute_v2_Confirmation.execute();
     }
 

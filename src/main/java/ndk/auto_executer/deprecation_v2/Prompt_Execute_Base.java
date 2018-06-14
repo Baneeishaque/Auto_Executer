@@ -1,4 +1,4 @@
-package ndk.auto_executer;
+package ndk.auto_executer.deprecation_v2;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
