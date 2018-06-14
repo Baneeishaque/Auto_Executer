@@ -27,8 +27,8 @@ public class Prompt_Execute_v3_Auto extends Prompt_Execute_v3 {
     }
 
     public static void main(String[] args) {
-        Prompt_Execute_v3_Auto prompt_Execute_v2_Auto = new Prompt_Execute_v3_Auto();
-        prompt_Execute_v2_Auto.execute();
+        Prompt_Execute_v3_Auto prompt_Execute_v3_Auto = new Prompt_Execute_v3_Auto();
+        prompt_Execute_v3_Auto.execute();
     }
 
 }

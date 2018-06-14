@@ -44,7 +44,7 @@ public interface Prompt_Execute_Interface {
 
     boolean configure_confirmation_mode();
 
-    default void find_File(String name, File folder, String command, boolean file_delete, String file_to_delete, boolean auto_mode, boolean continue_on_error, boolean confirmation_mode) {
+    static void find_File(String name, File folder, String command, boolean file_delete, String file_to_delete, boolean auto_mode, boolean continue_on_error, boolean confirmation_mode) {
 
         File[] folder_contents = folder.listFiles();
 
@@ -77,7 +77,7 @@ public interface Prompt_Execute_Interface {
         }
     }
 
-    default void execute_command(File parentFile, String command, boolean file_delete, String file_to_delete, boolean auto_mode, boolean continue_on_error, boolean confirmation_mode) {
+    static void execute_command(File parentFile, String command, boolean file_delete, String file_to_delete, boolean auto_mode, boolean continue_on_error, boolean confirmation_mode) {
 
         if (confirmation_mode) {
 
@@ -95,7 +95,7 @@ public interface Prompt_Execute_Interface {
         }
     }
 
-    default void after_folder_selection(File parentFile, String command, boolean file_delete, String file_to_delete, boolean auto_mode, boolean continue_on_error) {
+    static void after_folder_selection(File parentFile, String command, boolean file_delete, String file_to_delete, boolean auto_mode, boolean continue_on_error) {
 
         try {
 
@@ -169,7 +169,7 @@ public interface Prompt_Execute_Interface {
         }
     }
 
-    default void delete_file(File parentFile, String file_to_delete) {
+    static void delete_file(File parentFile, String file_to_delete) {
 
         File file = new File(parentFile.getPath() + "//" + file_to_delete);
         if (file.exists()) {

@@ -95,7 +95,7 @@ public class Prompt_Execute_v3 implements Prompt_Execute_Interface{
     }
 
     public static void main(String[] args) {
-        Prompt_Execute_v3 prompt_Execute_v2 = new Prompt_Execute_v3();
-        prompt_Execute_v2.execute();
+        Prompt_Execute_v3 prompt_Execute_v3 = new Prompt_Execute_v3();
+        prompt_Execute_v3.execute();
     }
 }

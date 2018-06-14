@@ -17,8 +17,8 @@ public class Prompt_Execute_v3_Continue extends Prompt_Execute_v3_Confirmation {
     }
 
     public static void main(String[] args) {
-        Prompt_Execute_v3_Continue prompt_Execute_v2_Continue = new Prompt_Execute_v3_Continue();
-        prompt_Execute_v2_Continue.execute();
+        Prompt_Execute_v3_Continue prompt_Execute_v3_Continue = new Prompt_Execute_v3_Continue();
+        prompt_Execute_v3_Continue.execute();
     }
 
 }
