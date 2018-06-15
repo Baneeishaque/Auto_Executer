@@ -12,7 +12,7 @@ import org.apache.commons.lang3.SystemUtils;
  *
  * @author manec
  */
-public class Prompt_Execute_v3 implements Prompt_Execute_Interface{
+public class Prompt_Execute_v3 extends Prompt_Execute_Base{
 
     Scanner scan = new Scanner(System.in);
 
@@ -97,5 +97,13 @@ public class Prompt_Execute_v3 implements Prompt_Execute_Interface{
     public static void main(String[] args) {
         Prompt_Execute_v3 prompt_Execute_v3 = new Prompt_Execute_v3();
         prompt_Execute_v3.execute();
+    }
+
+    @Override
+    int configure_skip() {
+        
+        System.out.println("Enetr No. of Skips : ");
+        return scan.nextInt();
+        
     }
 }

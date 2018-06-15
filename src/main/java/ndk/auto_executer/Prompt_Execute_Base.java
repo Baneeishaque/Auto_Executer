@@ -5,7 +5,6 @@
  */
 package ndk.auto_executer;
 
-import ndk.auto_executer.deprecation_v2.Prompt_Execute_Base;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -20,31 +19,35 @@ import org.apache.commons.lang3.SystemUtils;
  *
  * @author manec
  */
-public interface Prompt_Execute_Interface {
+public abstract class Prompt_Execute_Base {
 
-    default void execute() {
+    void execute() {
 
-        find_File(configure_search_file(), new File(configure_search_directory()), configure_command(), configure_delete_mode(), configure_delete_file(), configure_auto_mode(), configure_continue_mode(), configure_confirmation_mode());
+        find_File(configure_search_file(), new File(configure_search_directory()), configure_command(), configure_delete_mode(), configure_delete_file(), configure_auto_mode(), configure_continue_mode(), configure_confirmation_mode(),configure_skip());
 
     }
 
-    String configure_search_file();
+    abstract int configure_skip();
+    
+    abstract String configure_search_file();
 
-    String configure_search_directory();
+    abstract String configure_search_directory();
 
-    String configure_command();
+    abstract String configure_command();
 
-    boolean configure_delete_mode();
+    abstract boolean configure_delete_mode();
 
-    String configure_delete_file();
+    abstract String configure_delete_file();
 
-    boolean configure_auto_mode();
+    abstract boolean configure_auto_mode();
 
-    boolean configure_continue_mode();
+    abstract boolean configure_continue_mode();
 
-    boolean configure_confirmation_mode();
+    abstract boolean configure_confirmation_mode();
 
-    static void find_File(String name, File folder, String command, boolean file_delete, String file_to_delete, boolean auto_mode, boolean continue_on_error, boolean confirmation_mode) {
+    int project_count = 0;
+
+    final void find_File(String name, File folder, String command, boolean file_delete, String file_to_delete, boolean auto_mode, boolean continue_on_error, boolean confirmation_mode, int skip) {
 
         File[] folder_contents = folder.listFiles();
 
@@ -56,12 +59,22 @@ public interface Prompt_Execute_Interface {
 
                 if ((current_file.isFile()) && (name.equalsIgnoreCase(current_file.getName()))) {
 
-                    System.out.println("Project Folder : " + current_file.getParentFile());
-                    file_found = true;
+                    project_count++;
 
-                    execute_command(current_file.getParentFile(), command, file_delete, file_to_delete, auto_mode, continue_on_error, confirmation_mode);
+                    if (project_count <= skip) {
 
-                    break;
+                        System.out.println("Project " + project_count + " Folder : " + current_file.getParentFile()+" skipped.");
+
+                    } else {
+                     
+                        System.out.println("Project " + project_count + " Folder : " + current_file.getParentFile());
+
+                        file_found = true;
+
+                        execute_command(current_file.getParentFile(), command, file_delete, file_to_delete, auto_mode, continue_on_error, confirmation_mode);
+
+                        break;
+                    }
                 }
             }
 
@@ -70,14 +83,14 @@ public interface Prompt_Execute_Interface {
                 for (File current_file : folder_contents) {
 
                     if (current_file.isDirectory()) {
-                        find_File(name, current_file, command, file_delete, file_to_delete, auto_mode, continue_on_error, confirmation_mode);
+                        find_File(name, current_file, command, file_delete, file_to_delete, auto_mode, continue_on_error, confirmation_mode,skip);
                     }
                 }
             }
         }
     }
 
-    static void execute_command(File parentFile, String command, boolean file_delete, String file_to_delete, boolean auto_mode, boolean continue_on_error, boolean confirmation_mode) {
+    final void execute_command(File parentFile, String command, boolean file_delete, String file_to_delete, boolean auto_mode, boolean continue_on_error, boolean confirmation_mode) {
 
         if (confirmation_mode) {
 
@@ -95,7 +108,7 @@ public interface Prompt_Execute_Interface {
         }
     }
 
-    static void after_folder_selection(File parentFile, String command, boolean file_delete, String file_to_delete, boolean auto_mode, boolean continue_on_error) {
+    final void after_folder_selection(File parentFile, String command, boolean file_delete, String file_to_delete, boolean auto_mode, boolean continue_on_error) {
 
         try {
 
@@ -165,11 +178,11 @@ public interface Prompt_Execute_Interface {
 
             }
         } catch (IOException ex) {
-            Logger.getLogger(Prompt_Execute_Base.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ndk.auto_executer.deprecation_v2.Prompt_Execute_Base.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    static void delete_file(File parentFile, String file_to_delete) {
+    final void delete_file(File parentFile, String file_to_delete) {
 
         File file = new File(parentFile.getPath() + "//" + file_to_delete);
         if (file.exists()) {

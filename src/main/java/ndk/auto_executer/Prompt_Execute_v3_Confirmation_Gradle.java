@@ -16,7 +16,7 @@ public class Prompt_Execute_v3_Confirmation_Gradle extends Prompt_Execute_v3_Con
 
     @Override
     public void execute() {
-        Prompt_Execute_Interface.find_File(SEARCH_FILE, new File(super.configure_search_directory()), configure_gradle_command(), DELETE_FILE, FILE_TO_DELETE, super.configure_auto_mode(), super.configure_confirmation_mode(), super.configure_continue_mode());
+        find_File(SEARCH_FILE, new File(super.configure_search_directory()), configure_gradle_command(), DELETE_FILE, FILE_TO_DELETE, super.configure_auto_mode(), super.configure_confirmation_mode(), super.configure_continue_mode(),super.configure_skip());
     }
     
     public static void main(String[] args) {
