@@ -16,9 +16,9 @@ public class Prompt_Execute_v3_Continue_Gradle extends Prompt_Execute_v3_Continu
 
     @Override
     public void execute() {
-        find_File(SEARCH_FILE, new File(super.configure_search_directory()),configure_gradle_command(), DELETE_FILE, FILE_TO_DELETE, super.configure_auto_mode(), super.configure_confirmation_mode(), super.configure_continue_mode(),super.configure_skip());
+        find_File(SEARCH_FILE, new File(super.configure_search_directory()), configure_gradle_command(), DELETE_FILE, FILE_TO_DELETE, super.configure_auto_mode(), super.configure_continue_mode(), super.configure_confirmation_mode(), super.configure_skip());
     }
-    
+
     public static void main(String[] args) {
         Prompt_Execute_v3_Continue_Gradle execute_v3_Continue_Gradle = new Prompt_Execute_v3_Continue_Gradle();
         execute_v3_Continue_Gradle.execute();

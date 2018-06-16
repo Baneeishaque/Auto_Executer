@@ -27,7 +27,9 @@ public class Prompt_Execute_v3 extends Prompt_Execute_Base{
     @Override
     public String configure_search_directory() {
         System.out.println("Enter the directory where to search\nExamples\n/Volumes/Data_Drive/DK-HP-PA-2000AR/Laboratory/ : ");
-        return scan.next();
+        
+        String answer=scan.nextLine();
+        return answer.isEmpty()?"/Volumes/Data_Drive/DK-HP-PA-2000AR/Laboratory/":answer;
 
     }
 

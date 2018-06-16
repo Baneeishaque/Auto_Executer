@@ -67,7 +67,9 @@ public interface Gradle_Properties {
             System.out.println("\nGlobal Gradle Examples\n/Volumes/Data_Drive/Programs/gradle-4.4/bin/gradle installDebug\n/Volumes/Data_Drive/Programs/gradle-4.4/bin/gradle build\n/Volumes/Data_Drive/Programs/gradle-4.4/bin/gradle tasks\n\nProject Gradle Examples\n/Volumes/Data_Drive/Programs/gradle-4.4/bin/gradlew installDebug\n/Volumes/Data_Drive/Programs/gradle-4.4/bin/gradlew build\n/Volumes/Data_Drive/Programs/gradle-4.4/bin/gradlew tasks : ");
 //        }
 
-        return scan.nextLine();
+        String answer=scan.nextLine();
+        return answer.isEmpty()?"/Volumes/Data_Drive/Programs/gradle-4.4/bin/gradle installDebug":answer;
+
     }
 
 }

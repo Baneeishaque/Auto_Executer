@@ -23,12 +23,12 @@ public abstract class Prompt_Execute_Base {
 
     void execute() {
 
-        find_File(configure_search_file(), new File(configure_search_directory()), configure_command(), configure_delete_mode(), configure_delete_file(), configure_auto_mode(), configure_continue_mode(), configure_confirmation_mode(),configure_skip());
+        find_File(configure_search_file(), new File(configure_search_directory()), configure_command(), configure_delete_mode(), configure_delete_file(), configure_auto_mode(), configure_continue_mode(), configure_confirmation_mode(), configure_skip());
 
     }
 
     abstract int configure_skip();
-    
+
     abstract String configure_search_file();
 
     abstract String configure_search_directory();
@@ -59,22 +59,24 @@ public abstract class Prompt_Execute_Base {
 
                 if ((current_file.isFile()) && (name.equalsIgnoreCase(current_file.getName()))) {
 
+                    file_found = true;
+
                     project_count++;
 
                     if (project_count <= skip) {
 
-                        System.out.println("Project " + project_count + " Folder : " + current_file.getParentFile()+" skipped.");
+                        System.out.println("Project " + project_count + " Folder : " + current_file.getParentFile() + " skipped.");
 
                     } else {
-                     
-                        System.out.println("Project " + project_count + " Folder : " + current_file.getParentFile());
 
-                        file_found = true;
+                        System.out.println("Project " + project_count + " Folder : " + current_file.getParentFile());
 
                         execute_command(current_file.getParentFile(), command, file_delete, file_to_delete, auto_mode, continue_on_error, confirmation_mode);
 
-                        break;
                     }
+
+                    break;
+
                 }
             }
 
@@ -83,7 +85,7 @@ public abstract class Prompt_Execute_Base {
                 for (File current_file : folder_contents) {
 
                     if (current_file.isDirectory()) {
-                        find_File(name, current_file, command, file_delete, file_to_delete, auto_mode, continue_on_error, confirmation_mode,skip);
+                        find_File(name, current_file, command, file_delete, file_to_delete, auto_mode, continue_on_error, confirmation_mode, skip);
                     }
                 }
             }
